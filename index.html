@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>QRコード取得</title>
+
+        <style>
+             .pb a{
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               margin: 0 auto;
+               justify-content: 
+               padding: 0;
+               space-between;
+               width: 200px;
+               height: 60px;
+               font-size: 20px;
+               font-weight: 300;
+               color: #fff;
+               background-color: #eb6100;
+               border-radius:20px;
+            }
+            .pb:hover  a{
+              color: #fff;
+              background: #f58400;
+            }
+             .input a{
+               white-space: nowrap
+            }
+        </style>
+
+
+</head>
+<body>
+    <main>
+        <article>
+            <h1>QRコード作成</h1>
+            <p>Google Charts を利用してQRコードを作成します。</br>
+
+            <label>以下に情報を入力してください</label>
+
+            <p class="input"><a>名　　字：<input type="text" id="LName"  size="5"></a>
+              <a> 名　前：<input type="text" id="FName"  size="5"></a>
+　　　　　　</p>
+            <p class="input"><a>みょうじ：<input type="text" id="LhName"  size="5"></a>
+               <a> なまえ：<input type="text" id="FhName"  size="5"></a>
+            </p>
+            <p class="input">レベル：<select id="Level" >
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option></select>
+            </p>
+            <p class="input"><a>誕生日：<input type="number" id="Birthday" size="8" pattern="^[0-9]{8}$" autocomplete="bday" ></a>
+               </br>例：2012年5月1日⇒20120501
+            </p>
+
+            <div class="pb" >
+            <a><id="pb_GetQr"   onclick="GetQr()" >QRコード取得！</a>
+            </div>
+
+            <h3>以下にQRコードを表示</h3>
+                <p><span id="url"></p>
+                <p><span id="QrCode"></p>
+
+            <p>利用したAPI↓↓</br><a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Chart Tools: Infographics (Deprecated)</a></p>
+
+
+<script >
+    function GetQr(){
+        console.log ("in function");
+
+        var url;
+        var LName,FName,LhName,FhName;
+        var Level,Birthday;
+
+        LName = document.getElementById("LName").value;
+        FName = document.getElementById("FName").value;
+        LhName = document.getElementById("LhName").value;
+        FhName = document.getElementById("FhName").value;
+        Level = document.getElementById("Level").value;
+        Birthday = document.getElementById("Birthday").value;
+
+      	url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + LName + ',' + FName + ','+ LhName + ','+ FhName +  ',' + Level + ',' + Birthday + '&choe=UTF-8';
+
+        document.getElementById("url").textContent = "リクエストURI: "+ url;
+        document.getElementById("QrCode").innerHTML ="<img src=" + url+">" ;
+
+	}
+
+</script>
+
+</article>
+</main>
+<footer>
+</footer>
+
+</body>
+</html>
