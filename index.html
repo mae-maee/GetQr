@@ -29,6 +29,11 @@
              .input a{
                white-space: nowrap
             }
+             .QrCode{
+               display: flex;
+               justify-content: center;
+               align-items: center;
+            }
         </style>
 
 
@@ -64,7 +69,7 @@
 
             <h3>以下にQRコードを表示</h3>
                 <p><span id="url"></p>
-                <p><span id="QrCode"></p>
+                <p class="QrCode"><span id="QrCode"></p>
 
             <p>利用したAPI↓↓</br><a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Chart Tools: Infographics (Deprecated)</a></p>
 
