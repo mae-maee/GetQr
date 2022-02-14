@@ -71,19 +71,28 @@
 
 <script >
     function GetQr(){
-        console.log ("in function");
+        let url;
+        let LName,FName,LhName,FhName;
+        let Level,Birthday;
+        let regex = /,+/;
 
-        var url;
-        var LName,FName,LhName,FhName;
-        var Level,Birthday;
-
+	//値を取得
         LName = document.getElementById("LName").value;
         FName = document.getElementById("FName").value;
         LhName = document.getElementById("LhName").value;
         FhName = document.getElementById("FhName").value;
         Level = document.getElementById("Level").value;
         Birthday = document.getElementById("Birthday").value;
-
+	    
+        //入力値に","があった場合削除
+        while (LName.match(regex) || FName.match(regex) || LhName.match(regex) || FhName.match(regex) || Birthday.match(regex)){
+            LName = LName.replace(regex, "");
+            FName = FName.replace(regex, "");
+            LhName = LhName.replace(regex, "");
+            FhName = FhName.replace(regex, "");
+            Birthday = Birthday.replace(regex, "");
+        }
+	    
       	url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + LName + ',' + FName + ','+ LhName + ','+ FhName +  ',' + Level + ',' + Birthday + '&choe=UTF-8';
 
         document.getElementById("url").textContent = "リクエストURI: "+ url;
